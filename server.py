@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request 
+""" server app that renders page for detecting emotion in input"""
+from flask import Flask, render_template, request
 from EmotionDetection.emotion_detection import emotion_detector
 
 app = Flask("Emotion Detection")
@@ -25,13 +26,13 @@ def emo_detect():
     if dominant_emotion == "empty":
         #input was empty, ask for input
         return "No text was input! Please enter valid text."
-    elif dominant_emotion is None:
+    if dominant_emotion is None:
         #input had error
         return "Invalid text! Please try again!"
 
-    return f"""For the given statement, the system response is: 'anger':{anger}, 
-    'disgust':{disgust}, 'fear':{fear}, 'joy':{joy}, and 'sadness':{sadness}. 
-    The dominant emotion is <b>{dominant_emotion}</b>."""
+    return f"""For the given statement, the system response is: 'anger':{anger},
+     'disgust':{disgust}, 'fear':{fear}, 'joy':{joy}, and 'sadness':{sadness}.
+     The dominant emotion is <b>{dominant_emotion}</b>."""
 
 @app.route("/")
 def render_index_page():
