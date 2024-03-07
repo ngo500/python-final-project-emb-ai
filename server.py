@@ -22,6 +22,13 @@ def emo_detect():
     sadness = response['sadness']
     dominant_emotion = response['dominant_emotion']
 
+    if dominant_emotion == "empty":
+        #input was empty, ask for input
+        return "No text was input! Please enter valid text."
+    elif dominant_emotion is None:
+        #input had error
+        return "Invalid text! Please try again!"
+
     return f"""For the given statement, the system response is: 'anger':{anger}, 
     'disgust':{disgust}, 'fear':{fear}, 'joy':{joy}, and 'sadness':{sadness}. 
     The dominant emotion is <b>{dominant_emotion}</b>."""
